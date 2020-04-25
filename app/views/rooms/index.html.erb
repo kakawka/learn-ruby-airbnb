@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-3">
+      <%=link_to room_path(room.id) do %>
+        <%= image_tag room.image_url, class: 'w-100' %>
+      <% end %>
+      <p>Рейтинг <%= room.rating %></p>
+      <h5><%= link_to "#{room.title}", room_path(room.id) %></h5>
+      <p><b><%= room.price %>₽</b> за месяц</p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Room', new_room_path %>

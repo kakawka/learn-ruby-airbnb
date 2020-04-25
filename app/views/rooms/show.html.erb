@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h3><%= @room.title %></h3>
+<p> Рейтинг: <%= @room.rating %></p>
+<p><%= image_tag @room.image_url, class: 'w-100' %></p>
+<h4>
+  Квартира целиком
+  <% if @room.owner_name.present? %>
+    , хозяин: <%= @room.owner_name %>
+  <% end %>
+</h4>
+<hr>
+<p><%= @room.description %></p>
+
+
+<br>
+<% @reviews.each do |review| %>
+  <div class="media-block">
+    <span class="media-left mr-3" href="#">
+      <%= image_tag review.avatar, class: "img-circle img-sm" %>
+    </span>
+    <div class="media-body">
+      <div class="mar-btm">
+        <span href="#" class="btn-link text-semibold media-heading box-inline">
+          <%= review.name %>
+        </span>
+        <p class="text-muted text-sm">
+          <i class="fa fa-mobile fa-lg"></i>
+          <%= review.created_at %>
+        </p>
+      </div>
+      <p><%= review.text %></p>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+<%= form_with model: @room, url: reviews_path, method: :post do |f| %>
+  Отзывы:
+  <ul>
+    <%= f.fields_for :reviews do |reviews_form| %>
+      <li>
+        <%= reviews_form.hidden_field :room_id, value: @room.id %> <!-- Скрытая колонка -->
+
+        <%= reviews_form.label :avatar, 'аватар'%>
+        <%= reviews_form.text_field :avatar %>
+
+        <%= reviews_form.label :name, 'имя'%>
+        <%= reviews_form.text_field :name %>
+
+        <%= reviews_form.label :text, 'текст отзыва' %>
+        <%= reviews_form.text_field :text %>
+      </li>
+    <% end %>
+    <br>
+    <%= f.submit 'добавить отзыв'%>
+  </ul>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', rooms_path %>
