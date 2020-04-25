@@ -57,6 +57,25 @@
   </ul>
 <% end %>
 
+<% @options.each do |o|%>
+  <h3><%= o.name  %></h3>
+  <p><%= o.text  %></p>
+  <hr>
+<% end %>
+
+<%= form_with model: @room, url: options_path, method: :post do |f| %>
+  <p>Опции</p>
+  <%= f.fields_for :options do |o| %>
+    <%= o.hidden_field :room_id, value: @room.id %>
+    <%= o.label :name, 'характеистика' %>
+    <%= o.text_field :name %>
+    <%= o.label :text, 'Описание' %>
+    <%= o.text_field :text %>
+  <% end %>
+  <%= f.submit 'добавить функцию' %>
+<% end %>
+
+
 
 
 <%= link_to 'Edit', edit_room_path(@room) %> |

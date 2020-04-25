@@ -12,6 +12,7 @@ class RoomsController < ApplicationController
 
   def show
     @reviews = @room.reviews
+    @options = @room.options
   end
 
   # GET /rooms/new
