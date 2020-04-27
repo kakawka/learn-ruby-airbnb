@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_073505) do
+ActiveRecord::Schema.define(version: 2020_04_27_090243) do
 
   create_table "options", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2020_04_25_073505) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_options_on_room_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "photo"
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_photos_on_room_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -34,7 +42,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_073505) do
   create_table "rooms", force: :cascade do |t|
     t.string "title"
     t.float "rating"
-    t.string "image_url"
     t.string "owner_name"
     t.text "description"
     t.integer "price"
@@ -43,5 +50,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_073505) do
   end
 
   add_foreign_key "options", "rooms"
+  add_foreign_key "photos", "rooms"
   add_foreign_key "reviews", "rooms"
 end
