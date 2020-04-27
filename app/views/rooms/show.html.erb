@@ -11,11 +11,10 @@
 </div>
 <br>
 <%= form_with model: Photo.new do |p| %>
-<%= p.hidden_field :room_id, value: @room.id %>
-<%= p.label :photo, 'фото' %>
-<%= p.text_field :photo %>
-<%= p.submit 'добавить фото' %>
-
+  <%= p.hidden_field :room_id, value: @room.id %>
+  <%= p.label :photo, 'фото' %>
+  <%= p.text_field :photo %>
+  <%= p.submit 'добавить фото' %>
 <% end %>
 
 <h4>
