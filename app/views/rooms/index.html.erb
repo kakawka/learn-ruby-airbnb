@@ -4,7 +4,11 @@
   <% @rooms.each do |room| %>
     <div class="col-3">
       <%=link_to room_path(room.id) do %>
-        <%= image_tag room.image_url, class: 'w-100' %>
+        <% if room.photos.first %>
+          <%= image_tag room.photos.first.photo, class: 'w-100' %>
+        <% else %>
+          <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png', class: 'w-100' %>
+        <% end %>
       <% end %>
       <p>Рейтинг <%= room.rating %></p>
       <h5><%= link_to "#{room.title}", room_path(room.id) %></h5>

@@ -4,5 +4,6 @@ class Room < ApplicationRecord
   validates :rating, numericality: {less_than_or_equal_to: 5, greater_than: 0}
 
   has_many :reviews
-  has_many :options 
+  has_many :options
+  has_many :photos
 end

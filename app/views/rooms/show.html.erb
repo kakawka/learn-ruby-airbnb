@@ -2,7 +2,21 @@
 
 <h3><%= @room.title %></h3>
 <p> Рейтинг: <%= @room.rating %></p>
-<p><%= image_tag @room.image_url, class: 'w-100' %></p>
+<div class="row">
+  <% @photos.each do |p| %>
+    <div class="col-3">
+      <%= image_tag p.photo, class: 'w-100'%>
+    </div>
+  <% end %>
+</div>
+<br>
+<%= form_with model: Photo.new do |p| %>
+  <%= p.hidden_field :room_id, value: @room.id %>
+  <%= p.label :photo, 'фото' %>
+  <%= p.text_field :photo %>
+  <%= p.submit 'добавить фото' %>
+<% end %>
+
 <h4>
   Квартира целиком
   <% if @room.owner_name.present? %>
@@ -74,6 +88,7 @@
   <% end %>
   <%= f.submit 'добавить функцию' %>
 <% end %>
+
 
 
 
