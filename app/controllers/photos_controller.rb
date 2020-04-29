@@ -4,4 +4,9 @@ class PhotosController < ApplicationController
     Photo.create(new_photo)
     redirect_to room_path(params[:photo][:room_id])
   end
+  def destroy
+    k = Photo.find(params[:id])
+    k.destroy
+    redirect_to room_path(k.room_id)
+  end
 end
