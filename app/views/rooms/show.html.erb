@@ -6,6 +6,7 @@
   <% @photos.each do |p| %>
     <div class="col-3">
       <%= image_tag p.photo, class: 'w-100'%>
+      <%= link_to 'удалить', photo_path(p), method: :delete %>
     </div>
   <% end %>
 </div>
@@ -44,6 +45,9 @@
         </p>
       </div>
       <p><%= review.text %></p>
+      <%= link_to 'удалить отзыв', review_path(review), method: :delete %>
+      <br>
+      <%= link_to 'редактировать отзыв', edit_review_path(review) %>
     </div>
   </div>
   <hr>
@@ -74,6 +78,9 @@
 <% @options.each do |o|%>
   <h3><%= o.name  %></h3>
   <p><%= o.text  %></p>
+  <%= link_to 'удалить опцию', option_path(o), method: :delete %>
+  <br>
+  <%= link_to 'редактировать опцию', edit_option_path(o) %>
   <hr>
 <% end %>
 
