@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   validates :title, :description, length: {minimum: 5, to_short: 'добавь символы в описании'}
   validates :rating, numericality: {less_than_or_equal_to: 5, greater_than: 0}
 
-  has_many :reviews
-  has_many :options
-  has_many :photos
+  has_many :reviews, dependent: :destroy
+  has_many :options, dependent: :destroy
+  has_many :photos, dependent: :destroy
 end

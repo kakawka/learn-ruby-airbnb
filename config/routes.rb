@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :reviews, only: [:create, :destroy, :edit, :update]
   resources :rooms
   root to: "rooms#index"

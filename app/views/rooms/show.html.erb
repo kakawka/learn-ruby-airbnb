@@ -100,5 +100,6 @@
 
 
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Edit/изменить', edit_room_path(@room) %> |
+<%= link_to 'Back/назад', rooms_path %>
+<%= link_to 'Удалить', room_path(@room), method: :delete %>
